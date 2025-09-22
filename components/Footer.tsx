@@ -2,16 +2,18 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaHeart, FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaArrowUp, FaCode, FaCoffee } from 'react-icons/fa';
+import { FaHeart, FaLinkedin, FaGithub, FaTwitter, FaEnvelope, FaArrowUp, FaCode, FaCoffee, FaMedium } from 'react-icons/fa';
+import { profile } from '../lib/portfolioData';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   
   const socialLinks = [
-    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/muhamed-yasin', label: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: FaGithub, href: 'https://github.com/Muhamed-Yasin', label: 'GitHub', color: 'hover:text-gray-300' },
-    { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter', color: 'hover:text-blue-400' },
-    { icon: FaEnvelope, href: 'mailto:yasinmanath@gmail.com', label: 'Email', color: 'hover:text-red-400' }
+    { icon: FaLinkedin, href: profile.social.linkedin, label: 'LinkedIn', color: 'hover:text-blue-400' },
+    { icon: FaGithub, href: profile.social.github, label: 'GitHub', color: 'hover:text-gray-300' },
+    { icon: FaTwitter, href: profile.social.twitter, label: 'Twitter', color: 'hover:text-blue-400' },
+    { icon: FaMedium, href: profile.social.medium, label: 'Medium', color: 'hover:text-black' },
+    { icon: FaEnvelope, href: `mailto:${profile.email}`, label: 'Email', color: 'hover:text-red-400' }
   ];
 
   const quickLinks = [
@@ -53,11 +55,10 @@ export default function Footer() {
                 className="text-3xl font-bold mb-4 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent"
                 whileHover={{ scale: 1.02 }}
               >
-                Muhamed Yasin
+                {profile.name}
               </motion.h3>
               <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-md">
-                Full Stack Developer passionate about creating innovative solutions and beautiful user experiences. 
-                Always learning, always growing.
+                {profile.about}
               </p>
               
               {/* Fun Stats */}
@@ -131,12 +132,12 @@ export default function Footer() {
               <h4 className="text-xl font-semibold mb-6 text-white">Get In Touch</h4>
               <div className="space-y-4">
                 <motion.a
-                  href="mailto:yasinmanath@gmail.com"
+                  href={`mailto:${profile.email}`}
                   className="flex items-center text-gray-300 hover:text-white transition-colors duration-300 group"
                   whileHover={{ x: 5 }}
                 >
                   <FaEnvelope className="mr-3 text-purple-400 group-hover:text-purple-300" />
-                  yasinmanath@gmail.com
+                  {profile.email}
                 </motion.a>
                 <p className="text-gray-400 text-sm leading-relaxed">
                   Open to new opportunities and interesting projects. Let&apos;s create something amazing together!
@@ -165,7 +166,7 @@ export default function Footer() {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
               >
-                &copy; {currentYear} Muhamed Yasin. Made with{' '}
+                &copy; {currentYear} {profile.name}. Made with{' '}
                 <motion.span
                   className="inline-block mx-1"
                   animate={{ scale: [1, 1.2, 1] }}

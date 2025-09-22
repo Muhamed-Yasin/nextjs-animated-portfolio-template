@@ -4,54 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaGraduationCap, FaUniversity, FaCalendar, FaTrophy, FaCertificate, FaBook } from 'react-icons/fa';
 
+import { education } from '../lib/portfolioData';
+
 export default function Education() {
-  const educations = [
-    {
-      degree: "Bachelor of Technology in Computer Science",
-      institution: "Indian Institute of Information Technology Kottayam",
-      period: "2021 - 2025",
-      grade: "8.99/10 CGPA",
-      description: "Focused on core computer science principles including data structures, algorithms, database management, and software engineering. Completed projects in web development and machine learning.",
-      coursework: ["Data Structures & Algorithms", "Database Management", "Software Engineering", "Web Development", "Machine Learning", "Computer Networks"],
-      achievements: [
-        "Graduated with 8.99/10 CGPA",
-        "Student Mess Secretary - Managed dining services for 1000+ students and faculty",
-        "Placement Coordinator - Facilitated campus recruitment and student placements",
-        "Club Leadership - Led multiple student community clubs and initiatives",
-        "College Fest App Development - Led design team and contributed to backend development",
-        "Final Year Project Leader - Led 4-member team in Kathakali pose classification research using ML"
-      ],
-      type: "degree"
-    },
-    {
-      degree: "AWS Educate Introduction to Generative AI",
-      institution: "Amazon Web Services (AWS)",
-      period: "September 2025",
-      grade: "Completed",
-      description: "Comprehensive introduction to Generative AI concepts, applications, and AWS services for AI/ML workloads. Covered fundamental concepts and practical applications of generative AI technologies.",
-      coursework: ["Generative AI Fundamentals", "AWS AI/ML Services", "AI Use Cases", "Ethical AI", "AI Applications"],
-      achievements: [
-        "Successfully completed AWS Educate certification program",
-        "Gained knowledge of generative AI concepts and applications",
-        "Learned AWS AI/ML service implementations"
-      ],
-      type: "certification"
-    },
-     {
-      degree: "Hewlett Packard Enterprise - Software Engineering Job Simulation",
-      institution: "Forage",
-      period: "Aug 2024",
-      grade: "Credential ID: YWiQfNthkhAwh3XGR",
-      description: "Hands-on software engineering simulation program focusing on real-world HPE development practices, tools, and methodologies used in enterprise software development.",
-      coursework: ["Enterprise Software Development", "HPE Tools & Practices", "Software Engineering Methodologies", "Performance Testing", "Code Quality"],
-      achievements: [
-        "Completed comprehensive software engineering simulation",
-        "Gained practical experience with HPE development practices",
-        "Demonstrated proficiency in enterprise software development"
-      ],
-      type: "certification"
-    }
-  ];
+  const educations = education;
 
   const containerVariants = {
     hidden: { opacity: 0 },

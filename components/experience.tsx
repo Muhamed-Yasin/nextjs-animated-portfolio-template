@@ -4,54 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaBriefcase, FaCalendar, FaBuilding, FaChevronDown } from 'react-icons/fa';
 
+import { experience } from '../lib/portfolioData';
+
 export default function Experience() {
-  const experiences = [
-    {
-      role: "Software Engineer",
-      company: "Seaker Systems",
-      period: "Feb 2025 – Present",
-      duration: "Current",
-      location: "Kochi, Kerala",
-      description: "Full-Stack Development contributing to both frontend and backend systems, ensuring seamless integration between user-facing interfaces and backend services. Previously started as Frontend Developer Intern.",
-      technologies: ["C#", ".NET", "ASP.NET Core", "React.js", "SQL", "Zustand", "Material UI", "KendoReact"],
-      achievements: [
-        "Built and maintained scalable RESTful APIs using ASP.NET Core",
-        "Developed business logic and implemented secure, high-performance endpoints",
-        "Created and optimized SQL stored procedures and queries for complex data operations",
-        "Developed responsive, interactive UI components with efficient state management"
-      ]
-    },
-    {
-      role: "Freelance Web Developer",
-      company: "Sunway Energy Solutions",
-      period: "November 2024 - December 2024",
-      duration: "2 months",
-      location: "Remote",
-      description: "Built and hosted a responsive ReactJS landing page with automated query handling and SEO optimization to enhance customer communication and search visibility.",
-      technologies: ["ReactJS", "EmailJS", "SEO", "Custom Domain", "Responsive Design"],
-      achievements: [
-        "Built and hosted responsive ReactJS landing page on custom domain",
-        "Integrated EmailJS for automated customer query responses",
-        "Reduced response time by 40% through automation",
-        "Improved search visibility driving 30% increase in organic traffic"
-      ]
-    },
-    {
-      role: "CTY Project Intern",
-      company: "Hewlett Packard Enterprises",
-      period: "January 2024 – June 2024",
-      duration: "6 months",
-      location: "Remote",
-      description: "Developed CLI automation tools for HPE Performance Cluster Manager, improving testing coverage and streamlining data generation processes for enhanced bug reproduction and system monitoring.",
-      technologies: ["CLI Development", "Automation", "Performance Monitoring", "Configuration Design", "Testing"],
-      achievements: [
-        "Created CLI to automate data generation and monitor creation",
-        "Enhanced reproducibility of customer bugs reducing manual setup time by 30%",
-        "Increased detection of critical issues by 40% and enhanced test coverage by 25%",
-        "Designed custom syntax and parsing logic reducing configuration errors by 35%"
-      ]
-    }
-  ];
+  const experiences = experience;
 
   const containerVariants = {
     hidden: { opacity: 0 },

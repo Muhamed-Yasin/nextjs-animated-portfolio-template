@@ -2,11 +2,11 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane, FaExclamationTriangle } from 'react-icons/fa';
-import { FaMedium } from 'react-icons/fa6';
+import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane, FaExclamationTriangle, FaTwitter, FaMedium } from 'react-icons/fa';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import emailjs from 'emailjs-com';
+import { profile } from '../lib/portfolioData';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -124,15 +124,16 @@ export default function Contact() {
   };
 
   const contactInfo = [
-    { icon: FaEnvelope, label: 'Email', value: 'yasinmanath@gmail.com', href: 'mailto:yasinmanath@gmail.com' },
-    { icon: FaPhone, label: 'Phone', value: '+91 7306421010', href: 'tel:+917306421010' },
-    { icon: FaMapMarkerAlt, label: 'Location', value: 'Kochi, India', href: '#' }
+    { icon: FaEnvelope, label: 'Email', value: profile.email, href: `mailto:${profile.email}` },
+    { icon: FaPhone, label: 'Phone', value: profile.phone, href: `tel:${profile.phone.replace(/\s+/g, '')}` },
+    { icon: FaMapMarkerAlt, label: 'Location', value: profile.location, href: '#' }
   ];
 
   const socialLinks = [
-    { icon: FaLinkedin, href: 'https://www.linkedin.com/in/muhamed-yasin', label: 'LinkedIn' },
-    { icon: FaGithub, href: 'https://github.com/Muhamed-Yasin', label: 'GitHub' },
-    { icon: FaMedium, href: 'https://medium.com/@yasinmanath', label: 'Medium' }
+    { icon: FaLinkedin, href: profile.social.linkedin, label: 'LinkedIn' },
+    { icon: FaGithub, href: profile.social.github, label: 'GitHub' },
+    { icon: FaTwitter, href: profile.social.twitter, label: 'Twitter' },
+    { icon: FaMedium, href: profile.social.medium, label: 'Medium' }
   ];
 
   const containerVariants = {

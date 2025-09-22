@@ -1,86 +1,10 @@
 // components/CoreCompetencies.tsx
 "use client";
 import { motion } from 'framer-motion';
-import { FaServer, FaCode, FaPaintBrush, FaDatabase, FaBrain, FaRocket, FaCog, FaLightbulb } from 'react-icons/fa';
+import { coreCompetencies } from '../lib/portfolioData';
 
 export default function CoreCompetencies() {
-  const competencies = [
-    // --- CORE STRENGTHS ---
-    {
-      category: "Core Strengths",
-      icon: <FaServer className="w-8 h-8" />,
-      title: "Backend Development",
-      description: "Building robust, scalable REST APIs and services with C# and the .NET ecosystem.",
-      color: "from-blue-500 to-cyan-600",
-      bgColor: "bg-blue-50",
-      level: 95
-    },
-    {
-      category: "Core Strengths", 
-      icon: <FaDatabase className="w-8 h-8" />,
-      title: "Database Design",
-      description: "Designing efficient SQL databases, and writing optimized queries and stored procedures.",
-      color: "from-indigo-500 to-purple-600",
-      bgColor: "bg-indigo-50",
-      level: 90
-    },
-    {
-      category: "Proficient",
-      icon: <FaCog className="w-8 h-8" />,
-      title: "System Architecture",
-      description: "Designing scalable, maintainable system architectures and microservices.",
-      color: "from-gray-500 to-slate-600",
-      bgColor: "bg-gray-50",
-      level: 85
-    },
-    // --- PROFICIENT ---
-    {
-      category: "Proficient",
-      icon: <FaCode className="w-8 h-8" />,
-      title: "Frontend Development",
-      description: "Creating responsive and dynamic user interfaces with React, Next.js, and TypeScript.",
-      color: "from-green-500 to-emerald-600",
-      bgColor: "bg-green-50",
-      level: 80
-    },
-    {
-      category: "Proficient",
-      icon: <FaRocket className="w-8 h-8" />,
-      title: "DevOps & Deployment",
-      description: "Docker containerization, CI/CD pipelines, and cloud deployment strategies.",
-      color: "from-orange-500 to-red-600",
-      bgColor: "bg-orange-50",
-      level: 75
-    },
-    // --- FAMILIAR WITH ---
-    {
-      category: "Exploring",
-      icon: <FaBrain className="w-8 h-8" />,
-      title: "Machine Learning",
-      description: "Exploring and implementing pre-trained models for practical applications.",
-      color: "from-purple-500 to-pink-600",
-      bgColor: "bg-purple-50",
-      level: 65
-    },
-    {
-      category: "Exploring",
-      icon: <FaPaintBrush className="w-8 h-8" />,
-      title: "UI/UX Design",
-      description: "A strong appreciation for user-centric design and creating intuitive layouts.",
-      color: "from-pink-500 to-rose-600",
-      bgColor: "bg-pink-50",
-      level: 65
-    },
-    {
-      category: "Exploring",
-      icon: <FaLightbulb className="w-8 h-8" />,
-      title: "Innovation & Research",
-      description: "Staying current with emerging technologies and best practices.",
-      color: "from-yellow-500 to-orange-600",
-      bgColor: "bg-yellow-50",
-      level: 80
-    }
-  ];
+  const competencies = coreCompetencies;
 
   // Group competencies by category
   const grouped = competencies.reduce((acc, item) => {
@@ -160,66 +84,59 @@ export default function CoreCompetencies() {
               
               {/* Skills Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {items.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    className="group relative"
-                    initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: categoryIndex * 0.2 + index * 0.1,
-                      ease: "easeOut"
-                    }}
-                    whileHover={{ y: -10, scale: 1.02 }}
-                    viewport={{ once: true }}
-                  >
-                    {/* Card */}
-                    <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 h-full shadow-xl border border-white/20 hover:border-white/40 transition-all duration-500 group-hover:shadow-2xl">
-                      {/* Icon Container */}
-                      <motion.div 
-                        className={`inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r ${item.color} rounded-xl mb-4 text-white shadow-lg`}
-                        whileHover={{ rotate: 360, scale: 1.1 }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        {item.icon}
-                      </motion.div>
-                      
-                      {/* Content */}
-                      <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">
-                        {item.title}
-                      </h4>
-                      
-                      <p className="text-gray-300 text-sm leading-relaxed mb-4 group-hover:text-gray-200 transition-colors">
-                        {item.description}
-                      </p>
-                      
-                      {/* Skill Level */}
-                      <div className="space-y-2">
-                        <div className="flex justify-between items-center">
-                          <span className="text-xs text-gray-400 font-medium">Proficiency</span>
-                          <span className="text-xs text-white font-bold">{item.level}%</span>
-                        </div>
-                        
-                        <div className="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                          <motion.div
-                            className={`h-full bg-gradient-to-r ${item.color} rounded-full`}
-                            initial={{ width: 0 }}
-                            whileInView={{ width: `${item.level}%` }}
-                            transition={{ duration: 1.5, delay: categoryIndex * 0.2 + index * 0.1 + 0.5 }}
-                            viewport={{ once: true }}
-                          />
-                        </div>
-                      </div>
-                      
-                      {/* Hover Effect Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+                {items.map((item, index) => {
+                  const BlockBar = () => (
+                    <div className="flex gap-1 mt-4 mb-2">
+                      {[1,2,3,4,5].map((n) => (
+                        <div
+                          key={n}
+                          className={
+                            `h-2 w-6 rounded-full transition-all duration-300 ` +
+                            (n <= item.level ? 'bg-blue-400' : 'bg-gray-600/40')
+                          }
+                        />
+                      ))}
                     </div>
-                    
-                    {/* Glow Effect */}
-                    <div className={`absolute -inset-1 bg-gradient-to-r ${item.color} rounded-2xl blur opacity-0 group-hover:opacity-20 transition-opacity duration-500 -z-10`} />
-                  </motion.div>
-                ))}
+                  );
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={item.title}
+                      className="group relative"
+                      initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ 
+                        duration: 0.6, 
+                        delay: categoryIndex * 0.2 + index * 0.1,
+                        ease: "easeOut"
+                      }}
+                      whileHover={{ y: -10, scale: 1.02 }}
+                      viewport={{ once: true }}
+                    >
+                      {/* Card */}
+                      <div className="bg-white/10 backdrop-blur-lg rounded-2xl p-6 h-full shadow-xl border border-white/20 hover:border-white/40 transition-all duration-500 group-hover:shadow-2xl">
+                        {/* Icon Container */}
+                        <motion.div 
+                          className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-xl mb-4 text-white shadow-lg"
+                          whileHover={{ rotate: 360, scale: 1.1 }}
+                          transition={{ duration: 0.6 }}
+                        >
+                          {Icon && <Icon className="w-8 h-8" />}
+                        </motion.div>
+                        <h4 className="text-xl font-bold text-white mb-3 group-hover:text-blue-200 transition-colors">
+                          {item.title}
+                        </h4>
+                        <p className="text-gray-300 text-sm leading-relaxed mb-4 group-hover:text-gray-200 transition-colors">
+                          {item.description}
+                        </p>
+                        {/* Level Block Bar */}
+                        <BlockBar />
+                        {/* Hover Effect Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none" />
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           );

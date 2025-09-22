@@ -9,6 +9,7 @@ import Contact from "@/components/contact";
 import Education from "@/components/education";
 import Experience from "@/components/experience";
 import CoreCompetencies from "@/components/corecompetencies";
+import { heroSection } from "../lib/portfolioData";
 
 export default function Home() {
   return (
@@ -50,7 +51,7 @@ export default function Home() {
               animate={{ x: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              Hi, I&apos;m
+              {heroSection.greeting}
             </motion.span>
             <motion.span 
               className="block gradient-text font-black"
@@ -58,7 +59,7 @@ export default function Home() {
               animate={{ x: 0 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              Muhamed Yasin
+              {heroSection.name}
             </motion.span>
           </motion.h1>
           
@@ -70,10 +71,10 @@ export default function Home() {
             className="mb-8"
           >
             <h2 className="text-2xl md:text-3xl lg:text-4xl text-white/90 mb-4 font-light">
-              Full Stack Developer & Technology Explorer
+              {heroSection.subtitle}
             </h2>
             <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              Passionate about exploring different technologies and frameworks. I love tinkering with code and building innovative solutions that create beautiful user experiences.
+              {heroSection.description}
             </p>
           </motion.div>
           
@@ -84,43 +85,31 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.3 }}
             className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
           >
-            <motion.a 
-              href="#projects" 
-              className="group relative bg-white text-gray-900 font-bold py-4 px-8 rounded-full hover:bg-gray-100 transition-all duration-300 shadow-2xl glow-button overflow-hidden min-w-[200px]"
-              whileHover={{ 
-                scale: 1.05, 
-                boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" 
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10 flex items-center justify-center">
-                View My Projects
-                <motion.span 
-                  className="inline-block ml-2 text-xl"
-                  animate={{ x: [0, 5, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                >
-                  🚀
-                </motion.span>
-              </span>
-            </motion.a>
-            
-            <motion.a 
-              href="#contact" 
-              className="group glass-effect text-white font-bold py-4 px-8 rounded-full hover:bg-white/20 transition-all duration-300 min-w-[200px] border border-white/30"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="flex items-center justify-center">
-                Let&apos;s Connect
-                <motion.span 
-                  className="inline-block ml-2"
-                  whileHover={{ rotate: 15 }}
-                >
-                  💬
-                </motion.span>
-              </span>
-            </motion.a>
+            {heroSection.cta.map((cta, idx) => (
+              <motion.a 
+                key={cta.label}
+                href={cta.href}
+                className={
+                  idx === 0
+                    ? "group relative bg-white text-gray-900 font-bold py-4 px-8 rounded-full hover:bg-gray-100 transition-all duration-300 shadow-2xl glow-button overflow-hidden min-w-[200px]"
+                    : "group glass-effect text-white font-bold py-4 px-8 rounded-full hover:bg-white/20 transition-all duration-300 min-w-[200px] border border-white/30"
+                }
+                whileHover={idx === 0 ? { scale: 1.05, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" } : { scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className={idx === 0 ? "relative z-10 flex items-center justify-center" : "flex items-center justify-center"}>
+                  {cta.label}
+                  <motion.span 
+                    className={idx === 0 ? "inline-block ml-2 text-xl" : "inline-block ml-2"}
+                    animate={idx === 0 ? { x: [0, 5, 0] } : undefined}
+                    transition={idx === 0 ? { duration: 1.5, repeat: Infinity } : undefined}
+                    whileHover={idx === 1 ? { rotate: 15 } : undefined}
+                  >
+                    {cta.icon}
+                  </motion.span>
+                </span>
+              </motion.a>
+            ))}
           </motion.div>
           
           {/* My Principles Section */}
@@ -130,42 +119,36 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 1.6 }}
             className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-24" // Increased mb-24 for more spacing
           >
-            {[
-              {
-                icon: <FaCheckCircle className="w-8 h-8 text-green-400" />,
-                title: "Clean & Testable Code",
-                description: "I believe in writing code that is not just functional, but also maintainable and well-tested for future scalability."
-              },
-              {
-                icon: <FaLightbulb className="w-8 h-8 text-yellow-400" />,
-                title: "Pragmatic Problem-Solving",
-                description: "I enjoy tackling complex challenges and finding practical, effective solutions to real-world problems."
-              },
-              {
-                icon: <FaBookOpen className="w-8 h-8 text-sky-400" />,
-                title: "Continuous Learning",
-                description: "I am passionate about learning new technologies and constantly improving my skills as a developer."
-              }
-            ].map((principle, index) => (
-              <motion.div 
-                key={principle.title}
-                className="glass-effect rounded-2xl p-6 text-center" // Increased padding
-                whileHover={{ scale: 1.05, y: -5 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
-              >
-                <div className="flex justify-center mb-4">
-                  {principle.icon}
-                </div>
-                <div className="text-xl font-bold text-white mb-2">
-                  {principle.title}
-                </div>
-                <div className="text-white/70 text-sm font-medium">
-                  {principle.description}
-                </div>
-              </motion.div>
-            ))}
+            {heroSection.principles.map((principle, index) => {
+              const Icon =
+                principle.icon === 'FaCheckCircle' ? FaCheckCircle :
+                principle.icon === 'FaLightbulb' ? FaLightbulb :
+                principle.icon === 'FaBookOpen' ? FaBookOpen : null;
+              return (
+                <motion.div 
+                  key={principle.title}
+                  className="glass-effect rounded-2xl p-6 text-center"
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
+                >
+                  <div className="flex justify-center mb-4">
+                    {Icon && <Icon className={
+                      principle.icon === 'FaCheckCircle' ? 'w-8 h-8 text-green-400' :
+                      principle.icon === 'FaLightbulb' ? 'w-8 h-8 text-yellow-400' :
+                      principle.icon === 'FaBookOpen' ? 'w-8 h-8 text-sky-400' : ''
+                    } />}
+                  </div>
+                  <div className="text-xl font-bold text-white mb-2">
+                    {principle.title}
+                  </div>
+                  <div className="text-white/70 text-sm font-medium">
+                    {principle.description}
+                  </div>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </motion.div>
         
