@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       {/* STUNNING HERO SECTION */}
-      <section className="relative min-h-screen hero-gradient flex items-center justify-center overflow-hidden pt-20">
+  <section className="relative min-h-screen hero-gradient flex items-center justify-center overflow-hidden pt-20 md:pt-36 lg:pt-48">
         {/* Floating background elements */}
         <div className="floating-elements"></div>
         

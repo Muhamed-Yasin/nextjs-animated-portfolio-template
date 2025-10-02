@@ -16,22 +16,22 @@ export default function CoreCompetencies() {
     "Core Strengths": { 
       subtitle: "My primary areas of expertise", 
       icon: "🚀",
-      gradient: "from-blue-600 to-indigo-600"
+      gradient: "from-[#EAD747] to-[#EEFF00]"
     },
     "Proficient": { 
       subtitle: "Strong working knowledge and experience", 
       icon: "⚡",
-      gradient: "from-green-600 to-emerald-600"
+      gradient: "from-[#83FFB1] to-[#16FFB1]"
     },
     "Exploring": { 
       subtitle: "Actively learning and experimenting", 
       icon: "🌟",
-      gradient: "from-purple-600 to-pink-600"
+      gradient: "from-[#FF9193] to-[#FF6262]"
     }
   };
 
   return (
-    <section className="py-24 bg-gradient-to-br from-gray-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+  <section className="py-24 bg-gradient-to-br from-[#393093] via-[#271C8E] to-[#4A2C85] relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
@@ -92,7 +92,7 @@ export default function CoreCompetencies() {
                           key={n}
                           className={
                             `h-2 w-6 rounded-full transition-all duration-300 ` +
-                            (n <= item.level ? 'bg-blue-400' : 'bg-gray-600/40')
+                            (n <= item.level ? 'bg-blue-400' : 'bg-gray-400')
                           }
                         />
                       ))}

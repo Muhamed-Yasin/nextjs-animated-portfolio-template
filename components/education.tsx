@@ -45,7 +45,7 @@ export default function Education() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center mb-4">
-            <FaGraduationCap className="text-4xl text-indigo-600 mr-3" />
+            {/* <FaGraduationCap className="text-4xl text-indigo-600 mr-3" /> */}
             <h2 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Education & Learning
             </h2>

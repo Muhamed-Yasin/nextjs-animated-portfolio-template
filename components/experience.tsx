@@ -48,7 +48,7 @@ export default function Experience() {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center mb-4">
-            <FaBriefcase className="text-4xl text-blue-600 mr-3" />
+            {/* <FaBriefcase className="text-4xl text-blue-600 mr-3" /> */}
             <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
               Work Experience
             </h2>

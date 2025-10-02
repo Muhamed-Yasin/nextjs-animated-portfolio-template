@@ -179,6 +179,21 @@ export const experience = [
       "Increased detection of critical issues by 40% and enhanced test coverage by 25%",
       "Designed custom syntax and parsing logic reducing configuration errors by 35%"
     ]
+  },
+  {
+    role: "Frontend Developer Intern",
+    company: "Seaker Systems",
+    period: "June 2023 – August 2023",
+    duration: "3 months",
+    location: "Remote",
+    description: "Developed responsive and interactive UI components for web applications using React.js, ensuring seamless integration with backend services and enhancing user experience.",
+    technologies: ["React.js", "JavaScript", "Zustand", "Material UI", "KendoReact"],
+    achievements: [
+      "Implemented reusable components to improve development efficiency",
+      "Collaborated with backend developers to integrate RESTful APIs",
+      "Developed responsive, interactive UI components with efficient state management",
+      "Optimized application performance and reduced load times"
+    ]
   }
 ];
 
