@@ -1,0 +1,113 @@
+{
+  "planHash": "52f6739d74ce77684933a4b52ccae6944bcb224e36ec344b708674638297adaa",
+  "phase": "baseline",
+  "recordedAtUtc": "2026-10-20T11:27:21.5963508Z",
+  "retryCount": 0,
+  "resetBaseline": true,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 95207,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "next-builds",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E my-portfolio@0.1.0 build\r\n\u003E next build --turbopack\r\n\r\n \u26A0 Warning: Next.js inferred your workspace root, but it may not be correct.\r\n We detected multiple lockfiles and selected the directory of C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\package-lock.json as the root directory.\r\n To silence this warning, set \u0060turbopack.root\u0060 in your Next.js config, or consider removing one of the lockfiles if it\u0027s not needed.\r\n   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.\r\n Detected additional lockfiles: \r\n   * C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template\\package-lock.json\r\n\r\n   \u25B2 Next.js 15.5.3 (Turbopack)\r\n\r\n   Creating an optimized production build ...\r\n \u2713 Finished writing to disk in 274ms\r\n \u2713 Compiled successfully in 4.0s\r\n   Linting and checking validity of types ...\r\n   Collecting page data ...\r\n   Generating static pages (0/5) ...\r\n   Generating static pages (1/5) \r\n   Generating static pages (2/5) \r\n   Generating static pages (3/5) \r\n \u2713 Generating static pages (5/5)\r\n   Finalizing page optimization ...\r\n   Collecting build traces ...\r\n\r\nRoute (app)                         Size  First Load JS\r\n\u250C \u25CB /                            90.9 kB         261 kB\r\n\u2514 \u25CB /_not-found                      0 B         170 kB\r\n\u002B First Load JS shared by all     182 kB\r\n  \u251C chunks/0028e3ec132e817d.js     50 kB\r\n  \u251C chunks/d44a132146e57de6.js   59.2 kB\r\n  \u251C chunks/d874619b9b069cef.js   20.4 kB\r\n  \u251C chunks/f5b07fe51a36f641.js   17.2 kB\r\n  \u251C chunks/c1560693462e0ae8.css  12.4 kB\r\n  \u2514 other shared chunks (total)  23.1 kB\r\n\r\n\r\n\u25CB  (Static)  prerendered as static content\r\n\r\n",
+        "durationMs": 16564
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E my-portfolio@0.1.0 test\r\n\u003E node --test --experimental-strip-types lib/portfolioData.test.ts\r\n\r\n(node:15744) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\r\n(Use \u0060node --trace-warnings ...\u0060 to show where the warning was created)\r\nTAP version 13\r\n# (node:21320) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\r\n# (Use \u0060node --trace-warnings ...\u0060 to show where the warning was created)\r\n# (node:21320) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/YasinMuhamed/Desktop/portfolio/nextjs-animated-portfolio-template/lib/portfolioData.test.ts is not specified and it doesn\u0027t parse as CommonJS.\r\n# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.\r\n# To eliminate this warning, add \u0022type\u0022: \u0022module\u0022 to C:\\\\Users\\\\YasinMuhamed\\\\Desktop\\\\portfolio\\\\nextjs-animated-portfolio-template\\\\package.json.\r\n# Subtest: portfolio data\r\n    # Subtest: exposes the sections required by the page\r\n    ok 1 - exposes the sections required by the page\r\n      ---\r\n      duration_ms: 0.586\r\n      ...\r\n    # Subtest: keeps project links valid for rendered cards\r\n    ok 2 - keeps project links valid for rendered cards\r\n      ---\r\n      duration_ms: 0.3096\r\n      ...\r\n    1..2\r\nok 1 - portfolio data\r\n  ---\r\n  duration_ms: 1.6916\r\n  type: \u0027suite\u0027\r\n  ...\r\n1..1\r\n# tests 2\r\n# suites 1\r\n# pass 2\r\n# fail 0\r\n# cancelled 0\r\n# skipped 0\r\n# todo 0\r\n# duration_ms 146.9735\r\n",
+        "durationMs": 545,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      },
+      {
+        "name": "homepage-serves",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!DOCTYPE html\u003E\u003Chtml lang=\u0022en\u0022\u003E\u003Chead\u003E\u003Cmeta charSet=\u0022utf-8\u0022/\u003E\u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1\u0022/\u003E\u003Clink rel=\u0022stylesheet\u0022 href=\u0022/_next/static/chunks/%5Broot-of-the-server%5D__bffde865._.css\u0022 data-precedence=\u0022next_static/chunks/[root-of-the-server]__bffde865._.css\u0022/\u003E\u003Clink rel=\u0022preload\u0022 as=\u0022script\u0022 fetchPriority=\u0022low\u0022 href=\u0022/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_9d243097._.js\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_compiled_react-dom_1140c2fe._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_compiled_next-devtools_index_4429894a.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_compiled_c6eb1b3d._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_client_2015e62c._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_418e7f36._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_%40swc_helpers_cjs_76b7dae1._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/nextjs-animated-portfolio-template_a0ff3932._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/turbopack-nextjs-animated-portfolio-template_113b3e27._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_a7a2a994._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/nextjs-animated-portfolio-template_app_favicon_ico_mjs_240ca124._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_motion-dom_dist_es_b34d4dff._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_framer-motion_dist_es_1911c5b0._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_react-icons_fa_index_mjs_5121eb4a._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_react-icons_lib_e170abae._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_2b23abd0._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/nextjs-animated-portfolio-template_cd88392a._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/nextjs-animated-portfolio-template_app_layout_tsx_7e90c83d._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/nextjs-animated-portfolio-template_acab720b._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_b6b0e8b5._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_%40firebase_firestore_dist_index_esm_5bc6fbbe.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_1937450a._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/nextjs-animated-portfolio-template_app_page_tsx_caf3ec6b._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_client_components_builtin_global-error_caf3ec6b.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cmeta name=\u0022next-size-adjust\u0022 content=\u0022\u0022/\u003E\u003Ctitle\u003EYasin\u0026#x27;s Devfolio\u003C/title\u003E\u003Cmeta name=\u0022description\u0022 content=\u0022Muhamed Yasin\u0026#x27;s Portfolio - Backend Developer \u0026amp; Full Stack Engineer\u0022/\u003E\u003Clink rel=\u0022icon\u0022 href=\u0022/favicon.ico?favicon.40176dfd.ico\u0022 sizes=\u002232x32\u0022 type=\u0022image/x-icon\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/e5eb6_next_dist_build_polyfills_polyfill-nomodule.js\u0022 noModule=\u0022\u0022\u003E\u003C/script\u003E\u003C/head\u003E\u003Cbody class=\u0022geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable antialiased\u0022\u003E\u003Cdiv hidden=\u0022\u0022\u003E\u003C!--$--\u003E\u003C!--/$--\u003E\u003C/div\u003E\u003Cheader class=\u0022fixed w-full z-50 bg-white shadow border-b border-white/20\u0022\u003E\u003Cnav class=\u0022container mx-auto px-6 py-4 flex items-center justify-between\u0022\u003E\u003Ca class=\u0022text-2xl font-bold text-transparent bg-gradient-to-r from-[#003E58] via-[#003E58] to-[#350766] bg-clip-text\u0022 href=\u0022/\u0022\u003EMuhamed Yasin\u003C/a\u003E\u003Cdiv class=\u0022hidden md:flex items-center space-x-8\u0022\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#about\u0022\u003EAbout\u003C/a\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#experience\u0022\u003EExperience\u003C/a\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#education\u0022\u003EEducation\u003C/a\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#projects\u0022\u003EProjects\u003C/a\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#\n\u2026[truncated]",
+        "durationMs": 7954
+      }
+    ],
+    "executions": [
+      {
+        "source": "setup[0]",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "ci"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "next-builds",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "homepage-serves",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "dev",
+          "--",
+          "--hostname",
+          "127.0.0.1",
+          "--port",
+          "3100"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}

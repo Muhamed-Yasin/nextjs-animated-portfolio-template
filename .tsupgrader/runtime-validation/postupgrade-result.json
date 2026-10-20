@@ -1,0 +1,113 @@
+{
+  "planHash": "52f6739d74ce77684933a4b52ccae6944bcb224e36ec344b708674638297adaa",
+  "phase": "postupgrade",
+  "recordedAtUtc": "2026-10-20T11:37:47.0751975Z",
+  "retryCount": 1,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 122429,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "next-builds",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E my-portfolio@0.1.0 build\r\n\u003E next build --turbopack\r\n\r\n\u25B2 Next.js 16.4.2 (Turbopack)\r\n\u2713 Running next.config.ts took 114ms\r\n\r\n  Creating an optimized production build ...\r\n\u2713 Compiled successfully in 6.8s\r\n  Running TypeScript ...\r\n\r\n  We detected TypeScript in your project and reconfigured your tsconfig.json file for you.\r\n  The following suggested values were added to your tsconfig.json. These values can be changed to fit your project\u0027s needs:\r\n\r\n  \t- include was updated to add \u0027.next/dev/types/**/*.ts\u0027\r\n\r\n  The following mandatory changes were made to your tsconfig.json:\r\n\r\n  \t- jsx was set to react-jsx (next.js uses the React automatic runtime)\r\n\r\n  Finished TypeScript in 4.9s ...\r\n  Collecting page data using 5 workers ...\r\n  Generating static pages using 5 workers (0/4) ...\r\n  Generating static pages using 5 workers (1/4) \r\n  Generating static pages using 5 workers (2/4) \r\n  Generating static pages using 5 workers (3/4) \r\n\u2713 Generating static pages using 5 workers (4/4) in 933ms\r\n  Finalizing page optimization ...\r\n\r\nRoute (app)\r\n\u250C \u25CB /\r\n\u2514 \u25CB /_not-found\r\n\r\n\r\n\u25CB  (Static)  prerendered as static content\r\n\r\n",
+        "durationMs": 17552
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E my-portfolio@0.1.0 test\r\n\u003E node --test --experimental-strip-types lib/portfolioData.test.ts\r\n\r\n(node:17596) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\r\n(Use \u0060node --trace-warnings ...\u0060 to show where the warning was created)\r\nTAP version 13\r\n# (node:5180) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time\r\n# (Use \u0060node --trace-warnings ...\u0060 to show where the warning was created)\r\n# (node:5180) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/YasinMuhamed/Desktop/portfolio/nextjs-animated-portfolio-template/lib/portfolioData.test.ts is not specified and it doesn\u0027t parse as CommonJS.\r\n# Reparsing as ES module because module syntax was detected. This incurs a performance overhead.\r\n# To eliminate this warning, add \u0022type\u0022: \u0022module\u0022 to C:\\\\Users\\\\YasinMuhamed\\\\Desktop\\\\portfolio\\\\nextjs-animated-portfolio-template\\\\package.json.\r\n# Subtest: portfolio data\r\n    # Subtest: exposes the sections required by the page\r\n    ok 1 - exposes the sections required by the page\r\n      ---\r\n      duration_ms: 0.5992\r\n      ...\r\n    # Subtest: keeps project links valid for rendered cards\r\n    ok 2 - keeps project links valid for rendered cards\r\n      ---\r\n      duration_ms: 0.3837\r\n      ...\r\n    1..2\r\nok 1 - portfolio data\r\n  ---\r\n  duration_ms: 1.8133\r\n  type: \u0027suite\u0027\r\n  ...\r\n1..1\r\n# tests 2\r\n# suites 1\r\n# pass 2\r\n# fail 0\r\n# cancelled 0\r\n# skipped 0\r\n# todo 0\r\n# duration_ms 154.112\r\n",
+        "durationMs": 760,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      },
+      {
+        "name": "homepage-serves",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!DOCTYPE html\u003E\u003Chtml lang=\u0022en\u0022\u003E\u003Chead\u003E\u003Cmeta charSet=\u0022utf-8\u0022/\u003E\u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1\u0022/\u003E\u003Clink rel=\u0022stylesheet\u0022 href=\u0022/_next/static/chunks/%5Broot-of-the-server%5D__0cbk-n2kjjn59._.css\u0022 data-precedence=\u0022next_static/chunks/[root-of-the-server]__0cbk-n2kjjn59._.css\u0022/\u003E\u003Clink rel=\u0022preload\u0022 as=\u0022script\u0022 fetchPriority=\u0022low\u0022 href=\u0022/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_1anvha4rlo79g._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_219uq1sj0q91c._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_motion-dom_dist_es_06kkk2j_xtkwr._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_framer-motion_dist_es_1rbjq8_jrmf68._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_react-icons_fa_index_mjs_01bzxvjl---we._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_react-icons_lib_11_gx9i3z64vl._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_0vwwgc5vjmvox._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_19zq552j9a5zm._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_1u3bpjp2yig29._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_1ckq5xv_yv1_k._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_re2js_build_index_10oziwle7cri1.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_%40firebase_firestore_dist_common-D9UYuXJO_esm_10on9nj-5r_d4.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_%40firebase_firestore_dist_1z61bajmz3ym1._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_0x_0hhiz4hqrm._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Ctitle\u003EYasin\u0026#x27;s Devfolio\u003C/title\u003E\u003Cmeta name=\u0022description\u0022 content=\u0022Muhamed Yasin\u0026#x27;s Portfolio - Backend Developer \u0026amp; Full Stack Engineer\u0022/\u003E\u003Clink rel=\u0022icon\u0022 href=\u0022/favicon.ico?favicon.2-qaw76ah3sjg.ico\u0022 sizes=\u002232x32\u0022 type=\u0022image/x-icon\u0022/\u003E\u003Cmeta name=\u0022next-size-adjust\u0022 content=\u0022\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js\u0022 noModule=\u0022\u0022\u003E\u003C/script\u003E\u003C/head\u003E\u003Cbody class=\u0022geist_a71539c9-module__T19VSG__variable geist_mono_8d43a2aa-module__8Li5zG__variable antialiased\u0022\u003E\u003Cdiv hidden=\u0022\u0022\u003E\u003C!--$--\u003E\u003C!--/$--\u003E\u003C/div\u003E\u003Cheader class=\u0022fixed w-full z-50 bg-white shadow border-b border-white/20\u0022\u003E\u003Cnav class=\u0022container mx-auto px-6 py-4 flex items-center justify-between\u0022\u003E\u003Ca class=\u0022text-2xl font-bold text-transparent bg-gradient-to-r from-[#003E58] via-[#003E58] to-[#350766] bg-clip-text\u0022 href=\u0022/\u0022\u003EMuhamed Yasin\u003C/a\u003E\u003Cdiv class=\u0022hidden md:flex items-center space-x-8\u0022\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#about\u0022\u003EAbout\u003C/a\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transition-colors\u0022 href=\u0022#experience\u0022\u003EExperience\u003C/a\u003E\u003Ca class=\u0022font-medium text-gray-700 hover:text-blue-600 transit\n\u2026[truncated]",
+        "durationMs": 7000
+      }
+    ],
+    "executions": [
+      {
+        "source": "setup[0]",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "ci"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "next-builds",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "test"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      },
+      {
+        "source": "homepage-serves",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.CMD",
+        "args": [
+          "run",
+          "dev",
+          "--",
+          "--hostname",
+          "127.0.0.1",
+          "--port",
+          "3100"
+        ],
+        "cwd": "C:\\Users\\YasinMuhamed\\Desktop\\portfolio\\nextjs-animated-portfolio-template",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32"
+      }
+    ]
+  }
+}
