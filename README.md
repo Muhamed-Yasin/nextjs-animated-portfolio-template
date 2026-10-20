@@ -3,9 +3,8 @@
 A modern, animated, and easily customizable developer portfolio built with Next.js, Tailwind CSS, and Framer Motion. Includes a functional contact form powered by EmailJS and Firebase (Firestore).
 
 ![Portfolio Screenshot](./public/images/screenshot.png) 
-*You should replace this with a screenshot of your own finished portfolio!*
 
-**View the Live Demo:** [https://your-live-demo-url.com](https://your-live-demo-url.com)
+**View the Live Demo:** [https://yasin.is-a.dev/](https://yasin.is-a.dev/)
 
 ---
 
