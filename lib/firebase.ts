@@ -11,5 +11,7 @@ const firebaseConfig = {
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID
 };
 
+export const isFirebaseConfigured = Object.values(firebaseConfig).every(Boolean);
+
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);

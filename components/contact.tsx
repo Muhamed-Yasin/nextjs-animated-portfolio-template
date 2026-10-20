@@ -4,9 +4,36 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub, FaPaperPlane, FaExclamationTriangle, FaTwitter, FaMedium } from 'react-icons/fa';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../lib/firebase';
+import { db, isFirebaseConfigured } from '../lib/firebase';
 import emailjs from 'emailjs-com';
 import { profile } from '../lib/portfolioData';
+
+const SUBMISSION_TIMEOUT_MS = 10000;
+const emailJsConfig = {
+  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+};
+const isEmailJsConfigured = Object.values(emailJsConfig).every(Boolean);
+
+function withTimeout<T>(promise: Promise<T>, operation: string): Promise<T> {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error(`${operation} timed out after ${SUBMISSION_TIMEOUT_MS}ms`));
+    }, SUBMISSION_TIMEOUT_MS);
+
+    promise.then(
+      value => {
+        clearTimeout(timeoutId);
+        resolve(value);
+      },
+      error => {
+        clearTimeout(timeoutId);
+        reject(error);
+      }
+    );
+  });
+}
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -81,34 +108,58 @@ export default function Contact() {
     setValidationErrors([]);
     
     try {
-      console.log('Attempting to save to Firebase...');
-      
-      // Save to Firebase
-      const docRef = await addDoc(collection(db, 'contact-submissions'), {
-        name: formData.name.trim(),
-        email: formData.email.trim().toLowerCase(),
-        message: formData.message.trim(),
-        timestamp: serverTimestamp(),
-        status: 'new'
-      });
-      
-      console.log('Firebase save successful, document ID:', docRef.id);
-      console.log('Attempting to send email via EmailJS...');
+      if (!isFirebaseConfigured && !isEmailJsConfigured) {
+        throw new Error('Contact form integrations are not configured.');
+      }
 
-      // Send email notification via EmailJS
-      const emailResult = await emailjs.send(
-        'service_vc7wd1w', 
-        'template_rvr9xyh',
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          time: new Date().toLocaleString()
-        },
-        'WE02XNluOL5kW_Fl3'
-      );
-      
-      console.log('EmailJS send successful:', emailResult);
+      const submissions: Promise<unknown>[] = [];
+
+      if (isFirebaseConfigured) {
+        submissions.push(
+          withTimeout(
+            addDoc(collection(db, 'contact-submissions'), {
+              name: formData.name.trim(),
+              email: formData.email.trim().toLowerCase(),
+              message: formData.message.trim(),
+              timestamp: serverTimestamp(),
+              status: 'new'
+            }),
+            'Firebase submission'
+          )
+        );
+      }
+
+      if (isEmailJsConfigured) {
+        submissions.push(
+          withTimeout(
+            emailjs.send(
+              emailJsConfig.serviceId!,
+              emailJsConfig.templateId!,
+              {
+                name: formData.name,
+                email: formData.email,
+                message: formData.message,
+                time: new Date().toLocaleString()
+              },
+              emailJsConfig.publicKey!
+            ),
+            'Email notification'
+          )
+        );
+      }
+
+      const submissionResults = await Promise.allSettled(submissions);
+      const failedResults = submissionResults.filter(result => result.status === 'rejected');
+
+      for (const result of failedResults) {
+        if (result.status === 'rejected') {
+          console.error('Contact submission failed:', result.reason);
+        }
+      }
+
+      if (failedResults.length === submissionResults.length) {
+        throw new Error('The message could not be submitted through Firebase or EmailJS.');
+      }
 
       setSubmitStatus('success');
       setFormData({ name: '', email: '', message: '' });

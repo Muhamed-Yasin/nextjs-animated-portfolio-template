@@ -11,7 +11,7 @@ export default function About() {
   const getSkillIcon = (skill: string) => (skillIcons as Record<string, string>)[skill] || "💻";
 
   return (
-    <section className="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
+    <section id="about" className="scroll-mt-24 py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-indigo-100/20"></div>
