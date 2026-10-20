@@ -104,7 +104,7 @@ Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:30
 
 ## 🎨 Making It Your Own
 
-All personal data—projects, work experience, principles, skills, etc.—is located in the `/data/portfolioData.ts` file. Open this file and replace the placeholder content with your own information to personalize the portfolio.
+All personal data—projects, work experience, principles, skills, etc.—is located in the `/lib/portfolioData.ts` file. Open this file and replace the placeholder content with your own information to personalize the portfolio.
 
 ## 📜 License
 
