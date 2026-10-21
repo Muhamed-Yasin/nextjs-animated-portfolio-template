@@ -73,8 +73,12 @@ export default function Contact() {
     } else if (!emailRegex.test(formData.email.trim())) {
       errors.push('Please enter a valid email address');
     }
-    
-    if (formData.message.trim().length < 10) {
+
+    // Determine the final message (use placeholder if user left it blank)
+    const defaultMessage = "Hi Yasin, I checked out your portfolio and would love to connect about a potential opportunity!";
+    const finalMessage = formData.message.trim() === '' ? defaultMessage : formData.message.trim();
+
+    if (finalMessage.length < 10) {
       errors.push('Message must be at least 10 characters long');
     }
     
@@ -106,6 +110,9 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setValidationErrors([]);
+
+    const defaultMessage = "Hi Yasin, I checked out your portfolio and would love to connect about a potential opportunity!";
+    const messageToSend = formData.message.trim() === '' ? defaultMessage : formData.message.trim();
     
     try {
       if (!isFirebaseConfigured && !isEmailJsConfigured) {
@@ -120,7 +127,7 @@ export default function Contact() {
             addDoc(collection(db, 'contact-submissions'), {
               name: formData.name.trim(),
               email: formData.email.trim().toLowerCase(),
-              message: formData.message.trim(),
+              message: messageToSend,
               timestamp: serverTimestamp(),
               status: 'new'
             }),
@@ -138,7 +145,7 @@ export default function Contact() {
               {
                 name: formData.name,
                 email: formData.email,
-                message: formData.message,
+                message: messageToSend,
                 time: new Date().toLocaleString()
               },
               emailJsConfig.publicKey!
@@ -368,10 +375,9 @@ export default function Contact() {
                 >
                   <textarea
                     name="message"
-                    placeholder="Your Message"
+                    placeholder="Hi Yasin, I checked out your portfolio and would love to connect about a potential opportunity!"
                     value={formData.message}
                     onChange={handleChange}
-                    required
                     rows={6}
                     className="w-full p-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none"
                   />
