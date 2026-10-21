@@ -6,10 +6,10 @@ import { useState, useEffect } from 'react';
 import { FaSun, FaMoon } from 'react-icons/fa';
 
 const navItems = [
-  { href: '#about', label: 'About' },
   { href: '#experience', label: 'Experience' },
-  { href: '#education', label: 'Education' },
-  { href: '#projects', label: 'Projects' }
+  { href: '#projects', label: 'Work' },
+  { href: '#about', label: 'About' },
+  { href: '#education', label: 'Education' }
 ];
 
 export default function Header() {

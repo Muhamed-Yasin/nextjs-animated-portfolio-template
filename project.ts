@@ -9,37 +9,37 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Apoorv - Official College Fest App",
-    description: "A comprehensive festival management app handling 10,000+ transactions for 1300+ users and 10+ shops. Features UPI-like point transfer, leaderboards, notifications, interactive maps, and secure admin authentication with shift-based access control.",
+    description: "Architected a high-throughput festival management system processing 10,000+ transactions for 1,300+ users. Engineered secure UPI-style point transfers and implemented shift-based role access control.",
     technologies: ["Node.js", "Flutter", "MongoDB", "Firebase", "Docker", "Figma"],
     link: "https://github.com/Muhamed-Yasin/Apoorv-Backend",
   },
   {
     title: "AccessHub - User Management System",
-    description: "A complete full-stack user management application with React frontend and Node.js backend. Features user CRUD operations, role assignment, and modern UI with React Hook Form.",
+    description: "Engineered a full-stack CRUD application focused on efficient state management and optimized query routing. Implemented secure role assignment and reduced form-handling overhead using React Hook Form.",
     technologies: ["React", "JavaScript", "Node.js", "Express", "React Hook Form"],
     link: "https://github.com/Muhamed-Yasin/AccessHub",
   },
   {
     title: "AutoGrader - AI Answer Sheet Corrector",
-    description: "An intelligent automatic answer-sheet correction system that utilizes Natural Language Processing and Machine Learning techniques for accurate assessment.",
+    description: "Developed an intelligent assessment engine utilizing Natural Language Processing (NLP) and Machine Learning to automate grading, significantly reducing manual assessment time while maintaining high accuracy.",
     technologies: ["Python", "NLP", "Machine Learning", "HTML", "CSS"],
     link: "https://github.com/Muhamed-Yasin/AutoGrader",
   },
   {
     title: "Sunway - Solar Energy Solutions",
-    description: "A professional landing page website for a solar energy solutions company, featuring modern design and responsive layout.",
+    description: "Designed and deployed a high-conversion, responsive landing page for a commercial client. Focused on SEO best practices and cross-device performance to drive customer acquisition.",
     technologies: ["JavaScript", "HTML", "CSS", "Responsive Design"],
     link: "https://github.com/Muhamed-Yasin/SunwayWebsite",
   },
   {
     title: "Family Association Website",
-    description: "The official website of the Manath Peechampilly Family Unit featuring family history, events, and interactive family tree visualization using D3.js. A complete platform for community engagement and genealogical exploration.",
+    description: "Built an interactive genealogical platform integrating D3.js to render complex family tree visualizations from relational datasets, driving community engagement through a modern UI.",
     technologies: ["JavaScript", "D3.js", "HTML", "CSS", "Family Tree Visualization"],
     link: "https://github.com/Muhamed-Yasin/FamilyAssociationWebsite",
   },
   {
     title: "Weather Finder App",
-    description: "A browser-based weather application with external API integration, providing real-time weather information with a clean and intuitive interface.",
+    description: "Integrated third-party REST APIs to deliver real-time, asynchronous weather tracking. Built a clean, intuitive interface focused on fast load times and error handling for external data fetches.",
     technologies: ["JavaScript", "HTML5", "CSS3", "Weather API", "OpenWeatherMap"],
     link: "https://github.com/Muhamed-Yasin/Weather-finder",
   },

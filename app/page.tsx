@@ -160,20 +160,18 @@ export default function Home() {
         </div>
       </section>
 
-      <About />
-      <CoreCompetencies />
+      {/* 1. Prove your real-world experience first */}
       <Experience />
-      <Education />
 
-      {/* PROJECTS SECTION - Simplified for brutalism */}
-      <section id="projects" className="py-24 bg-background relative overflow-hidden border-t border-foreground/10">
-        <div className="container mx-auto px-6 relative z-10">
+      {/* 2. Show the actual work you built */}
+      <section id="projects" className="py-24 bg-background relative overflow-hidden border-t-2 border-foreground">
+        <div className="container mx-auto px-6 relative z-10 max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: false, amount: 0.4 }}
-            className="mb-16 border-b-2 border-foreground pb-8"
+            transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
+            viewport={{ once: false, amount: 0.1 }}
+            className="mb-16 border-b-2 border-foreground pb-8 flex overflow-hidden"
           >
             <h2 className="text-5xl md:text-7xl font-black text-foreground uppercase tracking-tighter">
               Featured Work
@@ -184,44 +182,46 @@ export default function Home() {
             {projects.map((project, index) => (
               <motion.div
                 key={project.title}
-                initial={{ opacity: 0, y: 60 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: false, amount: 0.4 }}
+                transition={{ duration: 0.4, ease: [0.33, 1, 0.68, 1] }}
+                viewport={{ once: false, amount: 0.1 }}
               >
                 <ProjectCard project={project} />
               </motion.div>
             ))}
           </div>
           
-          {/* Call to Action */}
+          {/* GitHub Call to Action */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: false, amount: 0.4 }}
+            viewport={{ once: false, amount: 0.1 }}
             className="text-center mt-24"
           >
-            <motion.a
+            <a
               href="https://github.com/Muhamed-Yasin"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center border-2 border-foreground text-foreground font-mono uppercase tracking-widest px-8 py-4 hover:bg-foreground hover:text-background transition-colors duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center border-2 border-foreground text-foreground font-mono uppercase tracking-widest px-8 py-4 hover:bg-foreground hover:text-background transition-colors duration-300 cursor-none"
             >
               <span className="mr-4">Visit My GitHub</span>
-              <motion.span
-                whileInView={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                →
-              </motion.span>
-            </motion.a>
+              <span>→</span>
+            </a>
           </motion.div>
         </div>
       </section>
-      <Marquee text="AVAILABLE FOR FREELANCE // OPEN FOR OPPORTUNITIES // "/>
+
+      {/* 3. Detail your specific skills now that they care */}
+      <CoreCompetencies />
+
+      {/* 4. The personality and story */}
+      <About />
+
+      {/* 5. The baseline credentials */}
+      <Education />
+      
+      {/* 6. Close the deal */}
       <Contact />
     </>
   );

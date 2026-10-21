@@ -46,15 +46,6 @@ export const aboutSection = {
     iconLeft: "⚽",
     text: "When I'm not coding, you'll find me watching football or movies of any genre.",
     iconRight: "🎬"
-  },
-  skills: [
-    "C#", ".NET", "SQL Server", "Next.js", "React", "TypeScript", 
-    "Tailwind CSS", "Git", "MongoDB", "Docker", "Node.js", "Python"
-  ],
-  skillIcons: {
-    "C#": "🔷", ".NET": "⚡", "SQL Server": "🗃️", "Next.js": "▲",
-    "React": "⚛️", "TypeScript": "📘", "Tailwind CSS": "🎨", "Git": "📋",
-    "MongoDB": "🍃", "Docker": "🐳", "Node.js": "💚", "Python": "🐍"
   }
 };
 
@@ -78,14 +69,14 @@ export const coreCompetencies = [
     category: "Core Strengths",
     icon: FaServer,
     title: "Backend Development",
-    description: "Building robust, scalable REST APIs and services with C# and the .NET ecosystem.",
+    description: "Engineering low-latency, scalable REST APIs and microservices within the C# / .NET ecosystem.",
     level: 5
   },
   {
     category: "Core Strengths",
     icon: FaDatabase,
     title: "Database Design",
-    description: "Designing efficient SQL databases, and writing optimized queries and stored procedures.",
+    description: "Architecting high-performance SQL databases, optimizing complex queries, and implementing indexing strategies at scale.",
     level: 5
   },
   // --- PROFICIENT ---
