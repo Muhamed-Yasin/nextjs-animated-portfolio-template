@@ -190,7 +190,6 @@ export default function Contact() {
   const socialLinks = [
     { icon: FaLinkedin, href: profile.social.linkedin, label: 'LinkedIn' },
     { icon: FaGithub, href: profile.social.github, label: 'GitHub' },
-    { icon: FaTwitter, href: profile.social.twitter, label: 'Twitter' },
     { icon: FaMedium, href: profile.social.medium, label: 'Medium' }
   ];
 
@@ -210,231 +209,128 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-16 relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      {/* Animated Background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute -top-4 -right-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute -bottom-8 -left-4 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-700"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-1000"></div>
-      </div>
-
-      <div className="container mx-auto px-4 relative z-10">
+    <section id="contact" className="py-24 bg-background relative overflow-hidden border-t-2 border-foreground">
+      <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+        
         <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false }}
-          variants={containerVariants}
-          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.4 }}
+          className="mb-16 border-b-2 border-foreground pb-8"
         >
-          <motion.h2 
-            variants={itemVariants}
-            className="text-5xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent"
-          >
-            Let&apos;s Build Something Amazing
-          </motion.h2>
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl text-gray-300 max-w-2xl mx-auto"
-          >
-            Ready to turn your ideas into reality? I&apos;m here to help you create exceptional digital experiences.
-          </motion.p>
+          <h2 className="text-5xl md:text-7xl font-black text-foreground uppercase tracking-tighter">
+            Let's Talk
+          </h2>
         </motion.div>
         
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false }}
-          variants={containerVariants}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto"
-        >
-          {/* Contact Info */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
-              <h3 className="text-3xl font-bold text-white mb-8">Get in Touch</h3>
-              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-                I&apos;m always excited about new opportunities and interesting projects. 
-                Whether you have a question, a project idea, or just want to say hello, 
-                I&apos;d love to hear from you!
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          
+          {/* Contact Info Side */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            className="flex flex-col justify-between pr-0 lg:pr-12"
+          >
+            <div>
+              <p className="font-mono text-lg md:text-2xl leading-relaxed text-foreground mb-12">
+                Ready to turn your ideas into reality? I'm currently open for new opportunities.
               </p>
               
-              <div className="space-y-6">
-                {contactInfo.map((item, index) => (
-                  <motion.a
-                    key={index}
-                    href={item.href}
-                    whileHover={{ x: 10 }}
-                    className="flex items-center space-x-4 text-gray-300 hover:text-white transition-all duration-300 group"
-                  >
-                    <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center group-hover:shadow-lg group-hover:shadow-purple-500/50 transition-all duration-300">
-                      <item.icon className="text-white text-lg" />
-                    </div>
-                    <div>
-                      <p className="text-sm text-gray-400">{item.label}</p>
-                      <p className="text-white font-medium">{item.value}</p>
-                    </div>
-                  </motion.a>
-                ))}
+              <div className="space-y-6 mb-16">
+                <a href={`mailto:${profile.email}`} className="block text-2xl md:text-3xl font-black uppercase hover:text-accent transition-colors cursor-none">
+                  {profile.email}
+                </a>
+                <a href={`tel:${profile.phone.replace(/\s+/g, '')}`} className="block text-2xl md:text-3xl font-black uppercase hover:text-accent transition-colors cursor-none">
+                  {profile.phone}
+                </a>
               </div>
+            </div>
 
-              {/* Social Links */}
-              <div className="mt-8 pt-8 border-t border-white/10">
-                <h4 className="text-xl font-semibold text-white mb-4">Follow Me</h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-12 h-12 bg-white/10 backdrop-blur-lg rounded-full flex items-center justify-center text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all duration-300"
-                    >
-                      <social.icon className="text-lg" />
-                    </motion.a>
-                  ))}
-                </div>
+            {/* Brutalist Socials Block */}
+            <div>
+              <h3 className="font-mono text-sm font-bold uppercase text-foreground/50 mb-6 border-b-2 border-foreground/20 pb-2">
+                // On The Internet
+              </h3>
+              <div className="flex flex-col space-y-4">
+                {Object.entries(profile.social).map(([platform, link]) => (
+                  <a 
+                    key={platform}
+                    href={link as string} 
+                    target="_blank" 
+                    rel="noreferrer" 
+                    className="group flex items-center justify-between border-2 border-foreground p-4 hover:bg-foreground transition-colors duration-300 cursor-none"
+                  >
+                    <span className="font-black uppercase text-xl text-foreground group-hover:text-background transition-colors duration-300">
+                      {platform}
+                    </span>
+                    <span className="font-mono text-foreground group-hover:text-accent transition-colors duration-300">
+                      ↗
+                    </span>
+                  </a>
+                ))}
               </div>
             </div>
           </motion.div>
           
-          {/* Contact Form */}
-          <motion.div variants={itemVariants}>
-            <div className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 border border-white/10">
-              <h3 className="text-3xl font-bold text-white mb-8">Send a Message</h3>
+          {/* Brutalist Form Side */}
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+          >
+            <form onSubmit={handleSubmit} className="space-y-8">
+              <div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="NAME"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-transparent border-b-2 border-foreground py-4 font-mono text-xl text-foreground placeholder-foreground/50 focus:outline-none focus:border-accent transition-colors cursor-none rounded-none"
+                />
+              </div>
               
-              {/* Success Message */}
-              {submitStatus === 'success' && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-xl text-green-200"
-                >
-                  ✅ Thank you! Your message has been sent successfully. I&apos;ll get back to you soon!
-                </motion.div>
-              )}
+              <div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="EMAIL"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full bg-transparent border-b-2 border-foreground py-4 font-mono text-xl text-foreground placeholder-foreground/50 focus:outline-none focus:border-accent transition-colors cursor-none rounded-none"
+                />
+              </div>
               
-              {/* Validation Error Messages */}
-              {validationErrors.length > 0 && (
-                <motion.div 
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-xl"
-                >
-                  <div className="flex items-start space-x-3">
-                    <FaExclamationTriangle className="text-red-400 text-lg mt-0.5 flex-shrink-0" />
-                    <div className="space-y-1">
-                      <p className="text-red-200 font-semibold">Please fix the following errors:</p>
-                      <ul className="text-red-200 text-sm space-y-1">
-                        {validationErrors.map((error, index) => (
-                          <li key={index} className="flex items-center space-x-2">
-                            <span className="w-1 h-1 bg-red-400 rounded-full flex-shrink-0"></span>
-                            <span>{error}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </motion.div>
-              )}
+              <div>
+                <textarea
+                  name="message"
+                  placeholder="MESSAGE..."
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full bg-transparent border-2 border-foreground p-4 font-mono text-xl text-foreground placeholder-foreground/50 focus:outline-none focus:border-accent transition-colors cursor-none rounded-none resize-none mt-4"
+                />
+              </div>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                  className="group"
-                >
-                  <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="w-full p-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                  />
-                </motion.div>
-                
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                  className="group"
-                >
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="w-full p-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300"
-                  />
-                </motion.div>
-                
-                <motion.div
-                  whileFocus={{ scale: 1.02 }}
-                  className="group"
-                >
-                  <textarea
-                    name="message"
-                    placeholder="Hi Yasin, I checked out your portfolio and would love to connect about a potential opportunity!"
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full p-4 bg-white/10 backdrop-blur-lg border border-white/20 rounded-xl text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-300 resize-none"
-                  />
-                </motion.div>
-                
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-8 rounded-xl font-semibold text-lg hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                      <span>Sending...</span>
-                    </>
-                  ) : submitStatus === 'success' ? (
-                    <>
-                      <span>✅ Sent!</span>
-                    </>
-                  ) : (
-                    <>
-                      <FaPaperPlane className="text-lg" />
-                      <span>Send Message</span>
-                    </>
-                  )}
-                </motion.button>
-              </form>
-            </div>
-          </motion.div>
-        </motion.div>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full border-2 border-foreground bg-foreground text-background py-6 font-black text-2xl uppercase tracking-widest hover:bg-background hover:text-foreground transition-colors duration-300 disabled:opacity-50 cursor-none"
+              >
+                {isSubmitting ? "SENDING..." : submitStatus === 'success' ? "SENT" : "SEND MESSAGE"}
+              </button>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-lg rounded-2xl p-8 border border-white/10 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">Ready to Start Your Project?</h3>
-            <p className="text-gray-300 mb-6">
-              Let&apos;s discuss your ideas and create something extraordinary together.
-            </p>
-            <motion.a
-              href="mailto:yasinmanath@gmail.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/50"
-            >
-              <span>Let&apos;s Talk</span>
-              <FaPaperPlane />
-            </motion.a>
-            </div>
-        </motion.div>
+              {validationErrors.length > 0 && (
+                <div className="p-4 border-2 border-red-500 text-red-500 font-mono text-sm uppercase">
+                  {validationErrors.map((err, i) => <p key={i}>* {err}</p>)}
+                </div>
+              )}
+            </form>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

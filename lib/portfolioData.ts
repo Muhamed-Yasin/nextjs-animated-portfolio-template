@@ -39,7 +39,8 @@ export const heroSection = {
 export const aboutSection = {
   paragraphs: [
     `My love for technology started early—playing FIFA on our old desktop with my brother, I'd wonder: "What if I could build something like this someday?" That curiosity led me to computer science, and I've been hooked on coding ever since.`,
-    `What excites me most is seeing ideas come to life and that incredible rush when you finally solve a tricky problem. I'm a "jump right in" developer who loves exploring everything from backend systems to AI research.`
+    `What excites me most is seeing ideas come to life and that incredible rush when you finally solve a tricky problem. `,
+    `I'm a "jump right in" developer who loves exploring everything from backend systems to AI research.`
   ],
   highlight: {
     iconLeft: "⚽",
@@ -67,7 +68,6 @@ export const profile = {
   social: {
     github: 'https://github.com/Muhamed-Yasin',
     linkedin: 'https://www.linkedin.com/in/muhamed-yasin',
-    twitter: 'https://twitter.com/yasinmanath',
     medium: 'https://medium.com/@yasinmanath',
   },
 };

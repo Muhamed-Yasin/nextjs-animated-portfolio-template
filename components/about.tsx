@@ -1,100 +1,118 @@
-// components/About.tsx
+// components/about.tsx
 "use client";
 
-import { motion } from "framer-motion";
-import Image from 'next/image';
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { aboutSection } from '../lib/portfolioData';
 
-export default function About() {
+// Helper component to animate individual words based on scroll progress
+const Word = ({ children, progress, range }: { children: string, progress: any, range: [number, number] }) => {
+  const opacity = useTransform(progress, range, [0.2, 1]);
+  
+  return (
+    // Changed mt-2 to mt-1 to better fit the smaller font size
+    <motion.span style={{ opacity }} className="inline-block mr-[0.5em] mt-1">
+      {children}
+    </motion.span>
+  );
+};
 
+export default function About() {
   const { paragraphs, highlight, skills, skillIcons } = aboutSection;
   const getSkillIcon = (skill: string) => (skillIcons as Record<string, string>)[skill] || "💻";
 
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 80%", "end 50%"]
+  });
+
+  const allWords = paragraphs.flatMap(p => p.split(" "));
+  let currentWordIndex = 0;
+
   return (
-    <section id="about" className="scroll-mt-24 py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-100/20 to-indigo-100/20"></div>
-      </div>
-      
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="about" className="scroll-mt-24 py-24 bg-background relative overflow-hidden border-t-2 border-foreground">
+      <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+        
+        <div className="mb-16 border-b-2 border-foreground pb-8 flex overflow-hidden">
+          <motion.h2 
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }} // Hard, mechanical easing
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-5xl md:text-7xl font-black text-foreground uppercase tracking-tighter"
+          >
+            About Me
+          </motion.h2>
+        </div>
+        
+        <div className="mb-24">
+          <div ref={containerRef} className="mb-12">
+            {paragraphs.map((text, idx) => {
+              const words = text.split(" ");
+              return (
+                <p 
+                  key={idx} 
+                  // Scaled down text sizing and relaxed the line height for readability
+                  className="text-foreground font-mono text-lg md:text-xl lg:text-2xl leading-relaxed mb-6 max-w-4xl flex flex-wrap font-bold uppercase tracking-tight"
+                >
+                  {words.map((word, wIdx) => {
+                    const start = currentWordIndex / allWords.length;
+                    const end = start + (1 / allWords.length);
+                    currentWordIndex++;
+                    
+                    return (
+                      <Word key={wIdx} progress={scrollYProgress} range={[start, end]}>
+                        {word}
+                      </Word>
+                    );
+                  })}
+                </p>
+              );
+            })}
+          </div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.4 }}
+            className="inline-block p-6 border-l-8 border-accent bg-foreground text-background cursor-none mt-4"
+          >
+            <p className="flex items-center font-mono text-base md:text-lg font-bold uppercase">
+              <span className="text-2xl mr-4">{highlight.iconLeft}</span>
+              {highlight.text}
+              <span className="text-2xl ml-4">{highlight.iconRight}</span>
+            </p>
+          </motion.div>
+        </div>
+        
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: false }}
-          className="text-center mb-16"
+          viewport={{ once: false, amount: 0.4 }}
         >
-          <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent">
-            About Me
-          </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto rounded-full"></div>
+          <h3 className="text-2xl font-black text-foreground uppercase tracking-tighter mb-8">
+            Technical Arsenal
+          </h3>
+          <div className="flex flex-wrap gap-4">
+            {skills.map((skill, i) => (
+              <motion.div
+                key={skill}
+                className="flex items-center gap-3 px-6 py-3 border-2 border-foreground bg-background hover:bg-foreground hover:text-background transition-colors duration-300 cursor-none group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.05 }}
+                viewport={{ once: false, amount: 0.4 }}
+              >
+                <div className="text-xl group-hover:text-accent transition-colors duration-300">{getSkillIcon(skill)}</div>
+                <span className="text-sm font-bold uppercase tracking-widest">{skill}</span>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Profile Image Section */}
-          <motion.div 
-            className="relative"
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: false }}
-          >
-            <div className="relative w-72 h-72 mx-auto">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-600 rounded-full blur-2xl opacity-20 animate-pulse"></div>
-              <div className="relative w-full h-full rounded-full overflow-hidden shadow-2xl border-4 border-white">
-                <Image 
-                  src="/profile.jpg" 
-                  alt="Muhamed Yasin" 
-                  width={288}
-                  height={288}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </motion.div>
-          
-          {/* Content Section */}
-          <motion.div
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: false }}
-          >
-            <div className="prose prose-lg">
-              {paragraphs.map((text, idx) => (
-                <p key={idx} className={idx === 0 ? "text-gray-700 text-lg leading-relaxed mb-6" : "text-gray-600 leading-relaxed mb-6"}>
-                  {text}
-                </p>
-              ))}
-              <div className="p-4 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl border border-blue-100 mb-6">
-                <p className="text-gray-700 text-sm">
-                  <span className="text-xl mr-2">{highlight.iconLeft}</span>
-                  {highlight.text}
-                  <span className="text-xl ml-2">{highlight.iconRight}</span>
-                </p>
-              </div>
-            </div>
-            
-            {/* Skills Grid */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-              {skills.map((skill, i) => (
-                <motion.div
-                  key={skill}
-                  className="text-center p-4 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  whileHover={{ y: -5, scale: 1.05 }}
-                  viewport={{ once: false }}
-                >
-                  <div className="text-2xl mb-2">{getSkillIcon(skill)}</div>
-                  <span className="text-sm font-semibold text-gray-800">{skill}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+
       </div>
     </section>
   );

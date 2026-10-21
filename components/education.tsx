@@ -2,227 +2,144 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaUniversity, FaCalendar, FaTrophy, FaCertificate, FaBook } from 'react-icons/fa';
-
 import { education } from '../lib/portfolioData';
 
 export default function Education() {
-  const educations = education;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.3
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1, 
-      transition: { duration: 0.6 } 
-    }
-  };
+  const degrees = education.filter(edu => edu.type === 'degree');
+  const certs = education.filter(edu => edu.type === 'certification');
 
   return (
-    <section id="education" className="py-16 bg-gradient-to-br from-indigo-50 via-white to-purple-50 relative overflow-hidden">
-      {/* Background Decorations */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-indigo-600 rounded-full blur-2xl"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-600 rounded-full blur-2xl"></div>
-        <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-pink-600 rounded-full blur-xl"></div>
-      </div>
+    <section id="education" className="py-24 bg-background relative overflow-hidden border-t-2 border-foreground">
+      <div className="container mx-auto px-6 relative z-10 max-w-5xl">
+        
+        <div className="mb-16 border-b-2 border-foreground pb-8 flex overflow-hidden">
+          <motion.h2 
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }} // Hard, mechanical easing
+            viewport={{ once: true, margin: "-100px" }}
+            className="text-5xl md:text-7xl font-black text-foreground uppercase tracking-tighter"
+          >
+            Education
+          </motion.h2>
+        </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          className="text-center mb-16"
-        >
-          <div className="flex items-center justify-center mb-4">
-            {/* <FaGraduationCap className="text-4xl text-indigo-600 mr-3" /> */}
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Education & Learning
-            </h2>
-          </div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            My academic journey and continuous learning path that shaped my technical expertise
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: false }}
-          variants={containerVariants}
-          className="max-w-5xl mx-auto space-y-8"
-        >
-          {educations.map((edu, index) => (
-            <motion.div
-              key={index}
-              variants={cardVariants}
-              whileHover={{ scale: 1.02, y: -5 }}
-              className="group"
-            >
-              <div className={`bg-white rounded-3xl shadow-xl p-8 border-l-4 ${
-                edu.type === 'degree' ? 'border-indigo-600' : 'border-purple-600'
-              } hover:shadow-2xl transition-all duration-300 relative overflow-hidden`}>
-                
-                {/* Card Background Pattern */}
-                <div className="absolute top-0 right-0 w-32 h-32 opacity-5">
-                  {edu.type === 'degree' ? 
-                    <FaUniversity className="w-full h-full text-indigo-600" /> :
-                    <FaCertificate className="w-full h-full text-purple-600" />
-                  }
+        {/* PRIMARY: FORMAL DEGREES */}
+        <div className="mb-16">
+          <h3 className="font-mono text-sm font-bold uppercase text-foreground/50 mb-6 border-b-2 border-foreground/20 pb-2">
+            // Formal Education
+          </h3>
+          <div className="space-y-8">
+            {degrees.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: false, amount: 0.4 }}
+                className="group border-2 border-foreground p-8 md:p-12 bg-background hover:bg-foreground transition-colors duration-300 cursor-none"
+              >
+                <div className="flex flex-col md:flex-row items-start justify-between mb-8">
+                  <div className="max-w-2xl">
+                    <h3 className="text-3xl md:text-5xl font-black uppercase text-foreground group-hover:text-background tracking-tighter transition-colors duration-300">
+                      {edu.degree}
+                    </h3>
+                    <p className="font-mono text-xl text-accent group-hover:text-accent-inverted transition-colors duration-300 mt-4 font-bold uppercase">
+                      {edu.institution}
+                    </p>
+                  </div>
+                  <div className="mt-6 md:mt-0 text-left md:text-right flex flex-col gap-2 shrink-0">
+                    <span className="inline-block border-2 border-foreground group-hover:border-background group-hover:text-background px-4 py-2 font-mono text-sm uppercase font-bold transition-colors duration-300">
+                      {edu.period}
+                    </span>
+                    <span className="font-mono text-sm uppercase font-bold text-foreground/70 group-hover:text-background/70">
+                      {edu.grade}
+                    </span>
+                  </div>
                 </div>
 
-                <div className="relative z-10">
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex-1">
-                      <div className="flex items-center mb-2">
-                        <div className={`w-3 h-3 rounded-full mr-3 ${
-                          edu.type === 'degree' ? 'bg-indigo-600' : 'bg-purple-600'
-                        }`}></div>
-                        <span className={`text-sm font-semibold uppercase tracking-wider ${
-                          edu.type === 'degree' ? 'text-indigo-600' : 'text-purple-600'
-                        }`}>
-                          {edu.type === 'degree' ? 'Degree Program' : 'Certification'}
-                        </span>
-                      </div>
-                      
-                      <motion.h3 
-                        className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors duration-300"
-                        whileHover={{ scale: 1.02 }}
-                      >
-                        {edu.degree}
-                      </motion.h3>
-                      
-                      <div className="space-y-2 mb-4">
-                        <div className="flex items-center text-gray-600">
-                          <FaUniversity className="mr-3 text-indigo-600" />
-                          <span className="font-medium">{edu.institution}</span>
-                        </div>
-                        
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center text-gray-500">
-                            <FaCalendar className="mr-3 text-purple-600" />
-                            <span>{edu.period}</span>
-                          </div>
-                          <div className={`px-4 py-2 rounded-full text-sm font-medium ${
-                            edu.type === 'degree' ? 'bg-indigo-100 text-indigo-800' : 'bg-purple-100 text-purple-800'
-                          }`}>
-                            <FaTrophy className="inline mr-2" />
-                            {edu.grade}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center ml-6 ${
-                      edu.type === 'degree' ? 'bg-indigo-100' : 'bg-purple-100'
-                    }`}>
-                      {edu.type === 'degree' ? 
-                        <FaGraduationCap className="text-2xl text-indigo-600" /> :
-                        <FaCertificate className="text-2xl text-purple-600" />
-                      }
-                    </div>
-                  </div>
+                <p className="font-mono text-lg text-foreground/80 group-hover:text-background/80 leading-relaxed mb-8 transition-colors duration-300">
+                  {edu.description}
+                </p>
 
-                  {/* Description */}
-                  <p className="text-gray-700 leading-relaxed mb-6">
-                    {edu.description}
-                  </p>
-
-                  {/* Coursework */}
-                  <div className="mb-6">
-                    <div className="flex items-center mb-3">
-                      <FaBook className={`mr-2 ${
-                        edu.type === 'degree' ? 'text-indigo-600' : 'text-purple-600'
-                      }`} />
-                      <h4 className="font-semibold text-gray-900">Key Coursework</h4>
-                    </div>
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div>
+                    <h4 className="font-mono font-bold text-foreground group-hover:text-background uppercase mb-4">
+                      // Coursework
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
                       {edu.coursework.map((course, courseIndex) => (
-                        <motion.span
+                        <span
                           key={courseIndex}
-                          whileHover={{ scale: 1.05 }}
-                          className={`px-3 py-2 rounded-lg text-sm font-medium text-center ${
-                            edu.type === 'degree' ? 'bg-indigo-50 text-indigo-700 border border-indigo-200' : 
-                            'bg-purple-50 text-purple-700 border border-purple-200'
-                          } hover:shadow-md transition-all duration-200`}
+                          className="px-3 py-1 border border-foreground/30 group-hover:border-background/30 text-foreground group-hover:text-background text-xs font-mono uppercase font-bold transition-colors duration-300"
                         >
                           {course}
-                        </motion.span>
+                        </span>
                       ))}
                     </div>
                   </div>
-
-                  {/* Achievements */}
                   <div>
-                    <div className="flex items-center mb-3">
-                      <FaTrophy className={`mr-2 ${
-                        edu.type === 'degree' ? 'text-indigo-600' : 'text-purple-600'
-                      }`} />
-                      <h4 className="font-semibold text-gray-900">Key Achievements</h4>
-                    </div>
-                    <ul className="space-y-2">
+                    <h4 className="font-mono font-bold text-foreground group-hover:text-background uppercase mb-4">
+                      // Achievements
+                    </h4>
+                    <ul className="space-y-3">
                       {edu.achievements.map((achievement, achIndex) => (
-                        <motion.li
+                        <li
                           key={achIndex}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: achIndex * 0.1 }}
-                          className="flex items-start text-gray-700"
+                          className="flex items-start text-foreground/90 group-hover:text-background/90 font-mono text-sm"
                         >
-                          <div className={`w-2 h-2 rounded-full mt-2 mr-3 flex-shrink-0 ${
-                            edu.type === 'degree' ? 'bg-indigo-600' : 'bg-purple-600'
-                          }`}></div>
-                          <span className="text-sm leading-relaxed">{achievement}</span>
-                        </motion.li>
+                          <span className="mr-3 text-accent group-hover:text-accent-inverted transition-colors duration-300">{">"}</span>
+                          {achievement}
+                        </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
-          className="text-center mt-16"
-        >
-          <div className="bg-gradient-to-r from-indigo-600/10 to-purple-600/10 backdrop-blur-lg rounded-3xl p-8 border border-indigo-200 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Continuous Learning</h3>
-            <p className="text-gray-600 mb-6">
-              Education is a journey, not a destination. I&apos;m always expanding my knowledge and staying updated with the latest technologies.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-full font-medium shadow-lg"
-              >
-                Currently Learning: Advanced React Patterns
-              </motion.span>
-              <motion.span
-                whileHover={{ scale: 1.05 }}
-                className="px-6 py-2 bg-white border border-indigo-200 text-indigo-600 rounded-full font-medium shadow-lg"
-              >
-                Next: Cloud Architecture
-              </motion.span>
-            </div>
+              </motion.div>
+            ))}
           </div>
-        </motion.div>
+        </div>
+
+        {/* SECONDARY: CERTIFICATIONS (2-Column Grid) */}
+        <div>
+          <h3 className="font-mono text-sm font-bold uppercase text-foreground/50 mb-6 border-b-2 border-foreground/20 pb-2">
+            // Certifications & Continuing Ed
+          </h3>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {certs.map((edu, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: false, amount: 0.4 }}
+                className="group border-2 border-foreground p-6 bg-background hover:bg-foreground transition-colors duration-300 cursor-none flex flex-col justify-between"
+              >
+                <div>
+                  <h3 className="text-xl font-black uppercase text-foreground group-hover:text-background transition-colors duration-300 mb-2">
+                    {edu.degree}
+                  </h3>
+                  <p className="font-mono text-sm text-accent group-hover:text-accent-inverted transition-colors duration-300 font-bold uppercase mb-6 border-b-2 border-foreground/10 group-hover:border-background/10 pb-4">
+                    {edu.institution}
+                  </p>
+                  <p className="font-mono text-sm text-foreground/80 group-hover:text-background/80 leading-relaxed mb-6 transition-colors duration-300">
+                    {edu.description}
+                  </p>
+                </div>
+                
+                <div className="flex justify-between items-end border-t-2 border-foreground/10 group-hover:border-background/10 pt-4">
+                  <span className="font-mono text-xs uppercase font-bold text-foreground/70 group-hover:text-background/70">
+                    {edu.grade}
+                  </span>
+                  <span className="inline-block border border-foreground group-hover:border-background group-hover:text-background px-3 py-1 font-mono text-xs uppercase font-bold transition-colors duration-300">
+                    {edu.period}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );

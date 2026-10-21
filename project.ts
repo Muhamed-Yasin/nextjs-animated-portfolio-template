@@ -26,7 +26,7 @@ export const projects: Project[] = [
     link: "https://github.com/Muhamed-Yasin/AutoGrader",
   },
   {
-    title: "SunwayWebsite - Solar Energy Solutions",
+    title: "Sunway - Solar Energy Solutions",
     description: "A professional landing page website for a solar energy solutions company, featuring modern design and responsive layout.",
     technologies: ["JavaScript", "HTML", "CSS", "Responsive Design"],
     link: "https://github.com/Muhamed-Yasin/SunwayWebsite",

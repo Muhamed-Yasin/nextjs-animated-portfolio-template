@@ -1,7 +1,8 @@
 // app/page.tsx
 "use client";
-import { motion } from "framer-motion";
-import { FaCheckCircle, FaLightbulb, FaBookOpen } from "react-icons/fa";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import Image from "next/image";
 import ProjectCard from "@/components/ProjectCard";
 import { projects } from "@/project";
 import About from "@/components/about";
@@ -9,206 +10,174 @@ import Contact from "@/components/contact";
 import Education from "@/components/education";
 import Experience from "@/components/experience";
 import CoreCompetencies from "@/components/corecompetencies";
+import Preloader from "@/components/Preloader"; // Import the preloader
 import { heroSection } from "../lib/portfolioData";
+import Marquee from "@/components/Marquee";
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [heroReady, setHeroReady] = useState(false); // NEW STATE
+  
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      // Preloader takes 0.8s to exit. We trigger the hero animations 
+      // 400ms into the exit for a seamless overlap.
+      setTimeout(() => setHeroReady(true), 400); 
+    }
+  }, [isLoading]);
+
   return (
     <>
-      {/* STUNNING HERO SECTION */}
-  <section className="relative min-h-screen hero-gradient flex items-center justify-center overflow-hidden pt-20 md:pt-36 lg:pt-48">
-        {/* Floating background elements */}
-        <div className="floating-elements"></div>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+{/* ASYMMETRICAL BRUTALIST HERO SECTION */}
+      <section className="relative min-h-[100svh] w-full px-6 md:px-12 pt-24 pb-12 flex flex-col justify-between overflow-hidden bg-background">
         
-        {/* Main hero content */}
-        <motion.div 
-          className="text-center z-10 px-6 max-w-6xl mx-auto"
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          {/* Animated greeting
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-4"
-          >
-            <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-md rounded-full text-white text-sm font-medium border border-white/30">
-              👋 Welcome to my portfolio
-            </span>
-          </motion.div> */}
+        {/* Main Split Content */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center w-full flex-grow relative z-10">
           
-          {/* Main heading with gradient text */}
-          <motion.h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-extrabold mb-6 leading-tight"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.4 }}
+          {/* Left Side: Massive Typography */}
+          <div className="flex flex-col w-full md:w-3/5 shrink-0 z-20 pt-10 md:pt-0">
+            {/* First Name */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={heroReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.1 }}
+              className="flex text-[18vw] md:text-[11vw] font-black leading-[0.8] tracking-tighter text-foreground uppercase cursor-none"
+            >
+              {"MUHAMED".split("").map((letter, i) => (
+                <motion.span
+                  key={i}
+                  // REMOVED color from whileHover
+                  whileHover={{ scaleX: 1.4, marginInline: "1vw" }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  // ADDED Tailwind hover and transition classes here
+                  className="hover:text-accent transition-colors duration-200"
+                  style={{ display: "inline-block", originX: 0.5 }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </motion.div>
+
+            {/* Last Name */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={heroReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+              transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+              viewport={{ once: false, amount: 0.1 }}
+              className="flex text-[18vw] md:text-[11vw] font-black leading-[0.8] tracking-tighter text-foreground uppercase cursor-none"
+            >
+              {"YASIN".split("").map((letter, i) => (
+                <motion.span
+                  key={i}
+                  // REMOVED color from whileHover
+                  whileHover={{ scaleX: 1.4, marginInline: "1vw" }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  // ADDED Tailwind hover and transition classes here
+                  className="hover:text-accent transition-colors duration-200"
+                  style={{ display: "inline-block", originX: 0.5 }}
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </motion.div>
+          </div>
+
+          {/* Right Side: Halftone Portrait */}
+          <motion.div 
+            style={{ y }}
+            initial={{ opacity: 0, x: 50 }}
+            // CHANGED: Waits for heroReady
+            whileInView={heroReady ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.1 }}
+            className="relative w-3/4 max-w-[280px] md:max-w-[340px] aspect-[4/5] mt-12 md:mt-0 self-end md:self-auto halftone-container border-2 border-foreground shrink-0"
           >
-            <motion.span 
-              className="block text-white mb-2 text-shadow"
-              initial={{ x: -100 }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              {heroSection.greeting}
-            </motion.span>
-            <motion.span 
-              className="block gradient-text font-black"
-              initial={{ x: 100 }}
-              animate={{ x: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-            >
-              {heroSection.name}
-            </motion.span>
-          </motion.h1>
+            <div className="halftone-overlay"></div>
+            <Image 
+              src="/profile.jpg" 
+              alt="Muhamed Yasin" 
+              fill 
+              sizes="(max-width: 768px) 280px, 340px"
+              priority
+              className="object-cover halftone-image object-center"
+            />
+          </motion.div>
+        </div>
+
+        {/* Bottom Footer Area of Hero */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end w-full mt-20 md:mt-12 z-20 gap-8 md:gap-0">
           
-          {/* Subtitle with typing effect */}
+          {/* 1-Line Intro */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            // CHANGED: Waits for heroReady
+            whileInView={heroReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: false, amount: 0.1 }}
+            className="max-w-md"
           >
-            <h2 className="text-2xl md:text-3xl lg:text-4xl text-white/90 mb-4 font-light">
+            <p className="text-sm md:text-base font-mono uppercase tracking-widest text-foreground font-medium leading-relaxed">
+              <span className="text-accent mr-2">{"//"}</span>
               {heroSection.subtitle}
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-              {heroSection.description}
             </p>
           </motion.div>
-          
-          {/* Call-to-action buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.3 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+
+          {/* Custom Scroll Indicator */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            // CHANGED: Waits for heroReady
+            whileInView={heroReady ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 1 }}
+            viewport={{ once: false, amount: 0.1 }}
+            className="flex items-center gap-4 self-start md:self-end"
           >
-            {heroSection.cta.map((cta, idx) => (
-              <motion.a 
-                key={cta.label}
-                href={cta.href}
-                className={
-                  idx === 0
-                    ? "group relative bg-white text-gray-900 font-bold py-4 px-8 rounded-full hover:bg-gray-100 transition-all duration-300 shadow-2xl glow-button overflow-hidden min-w-[200px]"
-                    : "group glass-effect text-white font-bold py-4 px-8 rounded-full hover:bg-white/20 transition-all duration-300 min-w-[200px] border border-white/30"
-                }
-                whileHover={idx === 0 ? { scale: 1.05, boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)" } : { scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+            <span className="font-mono text-xs uppercase tracking-[0.2em] text-foreground">
+              SCROLL, GENTLY
+            </span>
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-full border border-foreground/30">
+              <div className="absolute top-[8px] left-[8px] w-2.5 h-2.5 rounded-full bg-accent"></div>
+              <motion.span 
+                whileInView={{ y: [0, 4, 0] }}
+                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                className="text-foreground text-xs mt-1"
               >
-                <span className={idx === 0 ? "relative z-10 flex items-center justify-center" : "flex items-center justify-center"}>
-                  {cta.label}
-                  <motion.span 
-                    className={idx === 0 ? "inline-block ml-2 text-xl" : "inline-block ml-2"}
-                    animate={idx === 0 ? { x: [0, 5, 0] } : undefined}
-                    transition={idx === 0 ? { duration: 1.5, repeat: Infinity } : undefined}
-                    whileHover={idx === 1 ? { rotate: 15 } : undefined}
-                  >
-                    {cta.icon}
-                  </motion.span>
-                </span>
-              </motion.a>
-            ))}
+                ↓
+              </motion.span>
+            </div>
           </motion.div>
-          
-          {/* My Principles Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-24" // Increased mb-24 for more spacing
-          >
-            {heroSection.principles.map((principle, index) => {
-              const Icon =
-                principle.icon === 'FaCheckCircle' ? FaCheckCircle :
-                principle.icon === 'FaLightbulb' ? FaLightbulb :
-                principle.icon === 'FaBookOpen' ? FaBookOpen : null;
-              return (
-                <motion.div 
-                  key={principle.title}
-                  className="glass-effect rounded-2xl p-6 text-center"
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 1.8 + index * 0.1 }}
-                >
-                  <div className="flex justify-center mb-4">
-                    {Icon && <Icon className={
-                      principle.icon === 'FaCheckCircle' ? 'w-8 h-8 text-green-400' :
-                      principle.icon === 'FaLightbulb' ? 'w-8 h-8 text-yellow-400' :
-                      principle.icon === 'FaBookOpen' ? 'w-8 h-8 text-sky-400' : ''
-                    } />}
-                  </div>
-                  <div className="text-xl font-bold text-white mb-2">
-                    {principle.title}
-                  </div>
-                  <div className="text-white/70 text-sm font-medium">
-                    {principle.description}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-        </motion.div>
-        
-        {/* Animated scroll indicator */}
-        {/* <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 scroll-indicator z-20"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 2 }}
-        >
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center backdrop-blur-sm">
-            <motion.div 
-              className="w-1 h-3 bg-white rounded-full mt-2"
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </div>
-          <p className="text-white/70 text-xs mt-2 font-medium">Scroll Down</p>
-        </motion.div> */}
-        
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-20 w-20 h-20 bg-white/10 rounded-full blur-xl animate-pulse hidden lg:block"></div>
-        <div className="absolute bottom-40 right-32 w-32 h-32 bg-purple-400/20 rounded-full blur-2xl animate-pulse hidden lg:block"></div>
+        </div>
       </section>
 
-      {/* REST OF THE SECTIONS */}
+      <About />
+      <CoreCompetencies />
+      <Experience />
+      <Education />
 
-        <About />
-
-        <CoreCompetencies />
-
-
-        <Experience />
-
-      
-        <Education />
-      
-      {/* ENHANCED PROJECTS SECTION */}
-      <section id="projects" className="py-24 bg-gradient-to-br from-slate-50 to-gray-100 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-72 h-72 bg-purple-200/30 rounded-full blur-3xl"></div>
-        </div>
-        
+      {/* PROJECTS SECTION - Simplified for brutalism */}
+      <section id="projects" className="py-24 bg-background relative overflow-hidden border-t border-foreground/10">
         <div className="container mx-auto px-6 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+            viewport={{ once: false, amount: 0.4 }}
+            className="mb-16 border-b-2 border-foreground pb-8"
           >
-            <h2 className="text-5xl font-bold mb-4 bg-gradient-to-r from-gray-900 via-blue-800 to-indigo-900 bg-clip-text text-transparent">
-              Featured Projects
+            <h2 className="text-5xl md:text-7xl font-black text-foreground uppercase tracking-tighter">
+              Featured Work
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-indigo-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              A showcase of my recent work, featuring full-stack applications and innovative solutions
-            </p>
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -218,7 +187,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false, amount: 0.4 }}
               >
                 <ProjectCard project={project} />
               </motion.div>
@@ -230,21 +199,20 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mt-16"
+            viewport={{ once: false, amount: 0.4 }}
+            className="text-center mt-24"
           >
-            <p className="text-gray-600 mb-6">Interested in seeing more of my work?</p>
             <motion.a
               href="https://github.com/Muhamed-Yasin"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center bg-gradient-to-r from-gray-900 to-gray-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center border-2 border-foreground text-foreground font-mono uppercase tracking-widest px-8 py-4 hover:bg-foreground hover:text-background transition-colors duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="mr-2">Visit My GitHub</span>
+              <span className="mr-4">Visit My GitHub</span>
               <motion.span
-                animate={{ x: [0, 3, 0] }}
+                whileInView={{ x: [0, 5, 0] }}
                 transition={{ duration: 1.5, repeat: Infinity }}
               >
                 →
@@ -253,7 +221,7 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-      
+      <Marquee text="AVAILABLE FOR FREELANCE // OPEN FOR OPPORTUNITIES // "/>
       <Contact />
     </>
   );

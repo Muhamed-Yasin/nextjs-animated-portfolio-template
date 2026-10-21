@@ -13,14 +13,10 @@ const config: Config = {
         mono: ['var(--font-geist-mono)'],
       },
       colors: {
-        'primary': '#0284c7', // A nice sky blue
-        'primary-hover': '#0369a1',
-        'neutral': {
-          '50': '#f8fafc',  // Off-white for sections
-          '100': '#f1f5f9',
-          '800': '#1e293b', // Dark slate for text
-          '900': '#0f172a', // Darker slate for headings
-        },
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        accent: "var(--accent)",
+        "accent-inverted": "var(--accent-inverted)", // Add this line
       },
     },
   },
