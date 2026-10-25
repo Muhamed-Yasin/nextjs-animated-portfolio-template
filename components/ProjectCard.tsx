@@ -1,7 +1,7 @@
 // components/ProjectCard.tsx
 "use client"; 
 import { motion } from "framer-motion";
-import { Project } from "@/project"; 
+import { Project } from "@/lib/portfolioData";
 
 type ProjectCardProps = {
   project: Project;
