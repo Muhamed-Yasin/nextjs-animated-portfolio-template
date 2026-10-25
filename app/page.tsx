@@ -4,14 +4,13 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import ProjectCard from "@/components/ProjectCard";
-import { projects } from "@/project";
+import { heroSection, projects } from "../lib/portfolioData";
 import About from "@/components/about";
 import Contact from "@/components/contact";
 import Education from "@/components/education";
 import Experience from "@/components/experience";
 import CoreCompetencies from "@/components/corecompetencies";
 import Preloader from "@/components/Preloader"; // Import the preloader
-import { heroSection } from "../lib/portfolioData";
 import Marquee from "@/components/Marquee";
 
 export default function Home() {
@@ -48,14 +47,14 @@ export default function Home() {
           {/* Left Side: Massive Typography */}
           <div className="flex flex-col w-full md:w-3/5 shrink-0 z-20 pt-10 md:pt-0">
             {/* First Name */}
-            <motion.div 
+            <motion.h1 
               initial={{ opacity: 0, x: -50 }}
               whileInView={heroReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.1 }}
               className="flex text-[18vw] md:text-[11vw] font-black leading-[0.8] tracking-tighter text-foreground uppercase cursor-none"
             >
-              {"MUHAMED".split("").map((letter, i) => (
+              {heroSection.firstName.split("").map((letter, i) => (
                 <motion.span
                   key={i}
                   // REMOVED color from whileHover
@@ -68,17 +67,17 @@ export default function Home() {
                   {letter}
                 </motion.span>
               ))}
-            </motion.div>
+            </motion.h1>
 
             {/* Last Name */}
-            <motion.div 
+            <motion.h1 
               initial={{ opacity: 0, x: -50 }}
               whileInView={heroReady ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
               transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
               viewport={{ once: false, amount: 0.1 }}
               className="flex text-[18vw] md:text-[11vw] font-black leading-[0.8] tracking-tighter text-foreground uppercase cursor-none"
             >
-              {"YASIN".split("").map((letter, i) => (
+              {heroSection.lastName.split("").map((letter, i) => (
                 <motion.span
                   key={i}
                   // REMOVED color from whileHover
@@ -91,7 +90,7 @@ export default function Home() {
                   {letter}
                 </motion.span>
               ))}
-            </motion.div>
+            </motion.h1>
           </div>
 
           {/* Right Side: Halftone Portrait */}

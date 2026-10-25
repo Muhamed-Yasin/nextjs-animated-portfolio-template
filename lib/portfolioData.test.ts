@@ -2,9 +2,7 @@
 import assert from "node:assert/strict";
 import {describe, it} from "node:test";
 // @ts-expect-error Node's type-stripping runtime requires explicit TypeScript extensions.
-import {aboutSection, coreCompetencies, education, experience, heroSection, profile} from "./portfolioData.ts";
-// @ts-expect-error Node's type-stripping runtime requires explicit TypeScript extensions.
-import {projects} from "../project.ts";
+import {aboutSection, coreCompetencies, education, experience, heroSection, profile, projects} from "./portfolioData.ts";
 
 describe("portfolio data", () => {
   it("exposes the sections required by the page", () => {
